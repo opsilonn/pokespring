@@ -1,0 +1,50 @@
+image: node:lts
+
+variables:
+  DB_HOST: 'localhost'
+  DB_DATABASE: 'otter_worlds'
+  DB_USER: 'root'
+  DB_PASSWORD: 'pasword'
+  
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  script:
+    - echo "build launch by $GITLAB_USER_LOGIN!"
+
+    
+test_endpoints:
+  stage: test
+  variables: 
+    MYSQL_DATABASE: '$DB_DATABASE'
+    MYSQL_ROOT_PASSWORD: '$DB_PASSWORD'
+  services:
+    - mariadb:latest
+  script:
+    - echo "database $DB_DATABASE"
+    - npm install
+    - echo "npm test"
+
+deploy:
+  stage: deploy
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+
+deploy-prod:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: deploy
+  script:
+    - docker login --username=$HUB_USERNAME --password=$HUB_PASSWORD
+    - docker build -t hephaistos .
+    - docker tag hephaistos:latest lcherel/hephaistos:latest
+    - docker push lcherel/hephaistos:latest
+  only:
+    - master

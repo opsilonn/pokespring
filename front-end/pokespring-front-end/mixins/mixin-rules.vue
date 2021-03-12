@@ -1,0 +1,21 @@
+<script>
+export default {
+  name: 'MixinRules',
+
+  data: () => ({
+    // Input max values
+    valueMaxSmall: 50,
+    valueMaxBig: 65535,
+
+    // Rules
+    rules: {
+      required: value => !!value || 'Required',
+      maxSmall: value => (value !== null && value !== undefined && value.length <= 50) || 'Max 50 characters',
+      maxBig: value => (value !== null && value !== undefined && value.length <= 65535) || 'Max 65535 characters',
+      ascii: value => (value !== null && value !== undefined && value.split('').every(v => v.charCodeAt(0) >= 32 && v.charCodeAt(0) <= 255)) || 'Contains invalid character',
+      nameMatch (name) { return value => value === name || 'The names do not match !' },
+      passwordMatch (name) { return value => value === name || 'The passwords do not match !' }
+    }
+  })
+}
+</script>
