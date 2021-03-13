@@ -30,6 +30,12 @@
       </router-link>
 
       <v-spacer />
+
+      <v-tabs align-with-title>
+        <v-tab>Tab 1</v-tab>
+        <v-tab>Tab 2</v-tab>
+        <v-tab>Tab 3</v-tab>
+      </v-tabs>
     </v-app-bar>
   </div>
 </template>
@@ -41,7 +47,7 @@ export default {
   name: 'LayoutAppBar',
 
   data: () => ({
-    bg: 'white'
+    bg: 'orange'
   }),
 
   mounted() {
@@ -56,7 +62,7 @@ export default {
         document.body.scrollTop < 100 &&
         document.documentElement.scrollTop < 100
       ) {
-        this.bg = 'white'
+        this.bg = 'orange'
       } else {
         this.bg = 'transparent'
       }
