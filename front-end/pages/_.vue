@@ -5,18 +5,20 @@
       Sorry, <span class="font-italic">{{ $route.params.pathMatch }} </span> is not a valid page :'(
     </h1>
 
-    <!-- Link to the Homepage -->
-    <NuxtLink to="/" class="pa-8">
-      Return to Home page
-    </NuxtLink>
-
-    <!-- Gif of 'asking you to leave' -->
     <center class="pa-16">
+      <!-- Gif -->
       <v-img
-        src="https://media1.tenor.com/images/b5bec02d7e57bdad7ca254d7f5efffb4/tenor.gif?itemid=7667729"
+        src="/confused-psyduck.gif"
         height="200px"
         contain
       />
+
+      <!-- Link to the Homepage -->
+      <p class="pa-8">
+      <NuxtLink to="/" class="pa-8">
+        Return to Home page
+      </NuxtLink>
+      </p>
     </center>
   </v-container>
 </template>

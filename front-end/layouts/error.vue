@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <!-- Blabla error -->
     <h1 class="text-center pa-4">
       Oopsie doopsie, an error occured...

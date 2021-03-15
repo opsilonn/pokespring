@@ -5,11 +5,10 @@ import opsilonn.pokespring.msaccount.DTO.AccountDTO;
 import opsilonn.pokespring.msaccount.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +35,34 @@ public class AccountResource {
 
         // We return a DTO
         return new AccountDTO(account);
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public AccountDTO login (@RequestBody Account accountReceived) {
+        // We try to login
+        Account accountFound = accountRepository.login(accountReceived.getUsername(), accountReceived.getPassword()).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+
+        // We return the logged-in account
+        return new AccountDTO(accountFound);
+    }
+
+
+    @PostMapping
+    @ResponseBody
+    public AccountDTO insert (@RequestBody Account accountReceived) {
+        // We initialize an account
+        Account accountSaved = new Account();
+
+        try {
+            // We try to save the account
+            accountSaved = accountRepository.save(accountReceived);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED);
+        }
+
+        // If reached, we return the created Account
+        return new AccountDTO(accountSaved);
     }
 
 

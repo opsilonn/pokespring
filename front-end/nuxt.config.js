@@ -38,19 +38,30 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/proxy'
   ],
+
+  // Redirects all API calls
+  proxy: {
+    '/api': {
+      target: 'http://localhost:81/',
+      pathRewrite: {
+        '^/api': '/api'
+      }
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
-        dark: {
-          primary: '#E9C490',
-          secondary: '#44221C',
+        light: {
+          primary: '#E86865',
+          secondary: '#96A4CC',
           accent: '#FF0000',
           info: '#E9C490',
           info2: '#9F5143',
@@ -67,6 +78,6 @@ export default {
   },
 
   router: {
-    middleware: ['myMiddleware']
+    middleware: ['middleware-auth']
   }
 }

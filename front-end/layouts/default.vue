@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <!-- App bar (navbar) -->
     <LayoutAppBar />
 
@@ -11,7 +11,7 @@
     </v-main>
 
     <!-- Footer to display the year -->
-    <v-footer app class="shrink d-none d-md-flex">
+    <v-footer app class="shrink d-none d-md-flex" color="rgba(255, 255, 255, 0.4)">
       <span>
         &copy; {{ new Date().getFullYear() }} - Pokespring, an attempt to learn Java Spring
       </span>
@@ -27,7 +27,7 @@ import MixinCss from '@/mixins/mixin-css'
 
 export default {
   components: {
-    LayoutAppBar
+    LayoutAppBar,
   },
 
   mixins: [MixinCss]

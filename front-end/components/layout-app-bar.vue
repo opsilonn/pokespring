@@ -4,69 +4,185 @@
     <v-app-bar
       app
       flat
-      :color="bg"
+      color="rgba(0, 0, 0, 0.4)"
     >
+      <!-- LEFT -->
+      <!-- Small size : drawer icon -->
+      <v-app-bar-nav-icon class="shrink d-flex d-md-none" @click="drawer = true" />
+    
+      <!-- Big size : list of menus -->
+      <div class="shrink d-none d-md-flex">
+        <v-spacer />
+
+        <!-- List of menus -->
+        <v-menu
+          v-for="(category, indexCategory) in categories"
+          :key="indexCategory"
+          open-on-hover
+          offset-y
+          bottom
+          origin="center center"
+          transition="scale-transition"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- button to activate menu -->
+            <v-btn
+              class="ma-2 white-on-hover"
+              text
+              x-large
+              v-bind="attrs"
+              v-on="on"
+            >
+              {{ category.title }}
+            </v-btn>
+          </template>
+
+          <!-- menu displaying a user's action -->
+          <v-list>
+            <v-list-item
+              v-for="(item, indexItem) in category.items"
+              :key="indexItem"
+              :to="item.to"
+            >
+              <v-icon
+                class="ma-2"
+              >
+                {{ item.icon }}
+              </v-icon>
+              <v-list-item-title>
+                - {{ item.title }}
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+
       <v-spacer />
 
       <!-- App-bar logo -->
       <router-link to="/">
-        <!-- Logo for small screens -->
-        <v-img
-          class="zoom-sm shrink d-flex d-md-none"
-          src="/logo.png"
-          max-height="50"
-          max-width="50"
-          contain
-        />
-
         <!-- Logo for big screens -->
         <v-img
-          class="zoom-sm shrink d-none d-md-flex"
+          class="zoom-sm"
           src="/logo-text.png"
-          max-height="80"
-          max-width="180"
+          max-height="100"
+          max-width="200"
           contain
         />
       </router-link>
 
       <v-spacer />
 
-      <v-tabs align-with-title>
-        <v-tab>Tab 1</v-tab>
-        <v-tab>Tab 2</v-tab>
-        <v-tab>Tab 3</v-tab>
-      </v-tabs>
+      <!-- Buttons (Login / Signup OR account links) -->
+      <div class="shrink d-none d-md-flex">
+        <LayoutAppBarButtons />
+      </div>
     </v-app-bar>
+    
+    <!-- Navigation drawer -->
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <!-- Buttons (Login / Signup OR account links) -->
+      <center>
+        <LayoutAppBarButtons />
+      </center>
+
+      <!-- We iterate through the categories-->
+      <v-list
+        v-for="(category, indexCategory) in categories"
+        :key="indexCategory"
+        nav
+        dense
+      >
+        <!-- Divider -->
+        <v-divider class="ma-6" />
+
+        <!-- Category's title -->
+        <v-subheader>{{ category.title }}</v-subheader>
+
+        <!-- Category's items -->
+        <v-list-item
+          v-for="(item, indexItem) in category.items"
+          :key="indexItem"
+          :to="item.to"
+        >
+          <v-list-item-icon>
+            <v-icon> {{ item.icon }} </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title> {{ item.title }} </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
 // Imports
+import { mapGetters } from 'vuex'
+import LayoutAppBarButtons from '@/components/layout-app-bar-buttons'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'LayoutAppBar',
 
+  components: {
+    LayoutAppBarButtons,
+  },
+
   data: () => ({
-    bg: 'orange'
+    // Trigger for the drawer
+    drawer: false,
+    group: null,
+
+    // List of categories to display (left)
+    categories: [
+      {
+        title: 'Pokemon',
+        items: [
+          {
+            icon: 'mdi-earth',
+            title: 'Discover',
+            to: '/user/my-universes'
+          },
+          {
+            icon: 'mdi-human-handsup',
+            title: 'Select random',
+            to: '/user/my-characters'
+          }
+        ]
+      },
+      {
+        title: 'Account',
+        items: [
+          {
+            icon: 'mdi-earth',
+            title: 'Discover',
+            to: '/user/my-universes'
+          },
+          {
+            icon: 'mdi-human-handsup',
+            title: 'Select random',
+            to: '/user/my-characters'
+          }
+        ]
+      }
+    ],
+
+    // List of items to display beneath the user's trigger (right)
+    itemsUser: [
+      {
+        icon: 'mdi-human-handsup',
+        title: 'osef'
+      }
+    ]
   }),
 
-  mounted() {
-    window.onscroll = () => {
-      this.changeColor();
-    };
-  },
-
-  methods: {
-    changeColor() {
-      if (
-        document.body.scrollTop < 100 &&
-        document.documentElement.scrollTop < 100
-      ) {
-        this.bg = 'orange'
-      } else {
-        this.bg = 'transparent'
-      }
-    },
-  },
+  computed: {
+    // Imports
+    ...mapGetters('authentification', ['isLogged', 'username'])
+  }
 }
 </script>
