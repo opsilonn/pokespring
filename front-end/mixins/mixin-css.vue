@@ -5,6 +5,65 @@ export default {
 </script>
 
 <style>
+/* Nuxt animation (by default : 'fade'. Can only be set with the transition: 'XYZ' property (fade, bounce, slide-bottom) */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+.layout-enter,
+.layout-leave-to {
+  opacity: 0;
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.slide-bottom-enter,
+.slide-bottom-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+}
+.bounce-enter-active {
+  transform-origin: top;
+  animation: bounce-in 0.8s;
+}
+.bounce-leave-active {
+  transform-origin: top;
+  animation: bounce-out 0.5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
 /* background SVG */
 .background {
   background-color: #f5aaa6;
@@ -25,15 +84,6 @@ h2 {
 }
 */
 
-/* Custom appbar (because the default one wasn't fitting) */
-.custom-appbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
 /* V-card class */
 .v-card.v-sheet.theme--light {
   background-color: #EEEEEE;
@@ -46,12 +96,12 @@ h2 {
 
 /* V-card class inside another V-card class */
 .v-card.v-sheet.theme--light .v-card.v-sheet.theme--light {
-  background-color: #525252;
+  background-color: #CCCC;
   transition: all 0.15s linear;
   padding: 1em;
 }
 .v-card.v-sheet.theme--light .v-card.v-sheet.theme--light:hover {
-  background-color: #757575;
+  background-color: #EEEE;
   transform: scale(1.05);
 }
 
@@ -140,8 +190,27 @@ h2 {
 .white-on-hover {
   transition: all .3s ease-out;
 }
-
 .white-on-hover:hover {
   color: #fff;
 }
+
+/* Color classes */
+.type-1 { color: #999999; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Normal */
+.type-2 { color: #db1420; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Fire */
+.type-3 { color: #1075ea; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Water */
+.type-4 { color: #1daf26; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Plant */
+.type-5 { color: #f4f262; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Elektrik */
+.type-6 { color: #8fdbdc; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Ice */
+.type-7 { color: #dc875b; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Fighting */
+.type-8 { color: #9c17e8; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Poison */
+.type-9 { color: #dec38c; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Ground */
+.type-10 { color: #c1ebf6; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Flying */
+.type-11 { color: #ec5bdc; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Psychic */
+.type-12 { color: #b1e854; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Bug */
+.type-13 { color: #b07f63; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Rock */
+.type-14 { color: #62258d; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Ghost */
+.type-15 { color: #483456; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Dark */
+.type-16 { color: #1075ea; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Dragon */
+.type-17 { color: #cdc1cc; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Steel */
+.type-18 { color: #f3a0ea; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; } /* Fairy */
 </style>

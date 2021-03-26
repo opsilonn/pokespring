@@ -54,13 +54,6 @@ public class PokemonInstanceResource {
 
         // We return the PokemonInstance's DTO
         return new PokemonInstanceDTO(pokemonInstance);
-
-        /*
-        // We get the PokemonInstance
-        PokemonInstance pokemonInstance = pokemonInstanceRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        return new PokemonInstanceDTO(pokemonInstance);
-         */
     }
 
 

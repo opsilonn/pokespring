@@ -1,5 +1,5 @@
 INSERT INTO type (id, name) VALUES
-(1, 'NORMAL'),
+(1, 'Normal'),
 (2, 'Feu'),
 (3, 'Eau'),
 (4, 'Plante'),

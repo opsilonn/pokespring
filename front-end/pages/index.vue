@@ -9,42 +9,16 @@
         contain
       />
     </center>
-    <div class="pa-2" style="position: sticky !important">
-      <h1 class="blue"> HEY</h1>
-    </div>
 
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
-    <h1>template</h1>
+    <v-card>
+      <h2
+        v-for="(n, index) in [ 'Normal', 'Fire', 'Water', 'Plant', 'Electrik', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy' ]"
+        :class="'type-' + (index+1)"
+        class="pa-2"
+      >
+        {{ n }}
+      </h2>
+    </v-card>
   </v-container>
 </template>
 
@@ -52,7 +26,8 @@
 // Imports
 
 export default {
-  name: 'PageTemplate',
+  name: 'PageHome',
+  transition: 'slide-bottom',
 
   components: {
   },

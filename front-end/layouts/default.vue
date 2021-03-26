@@ -22,7 +22,7 @@
 
 <script>
 // Imports
-import LayoutAppBar from '@/components/layout-app-bar'
+import LayoutAppBar from '@/components/layout/layout-app-bar'
 import MixinCss from '@/mixins/mixin-css'
 
 export default {

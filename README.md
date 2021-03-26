@@ -36,6 +36,11 @@ Here is the link to [the official website](https://www.loups-garous-en-ligne.com
 ### Installation
 Here is how to install the project :
 ```
+DATABASE
+Using MySql, create a database using the following script :
+
+mysql scripts/data for ms-account.sql
+
 BACK-END
 
 Open any of the sub-project, and import all the other sub-projects (in Intelij, open the other pom.xml)

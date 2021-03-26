@@ -11,6 +11,7 @@ public class PokemonShort {
     private String name;
     private Type type1;
     private Type type2;
+    private String imagePath;
 
 
     // CONSTRUCTORS
@@ -29,12 +30,13 @@ public class PokemonShort {
      * @param type1
      * @param type2
      */
-    public PokemonShort(Long id, Long pokedexNumber, String name, Type type1, Type type2) {
+    public PokemonShort(Long id, Long pokedexNumber, String name, Type type1, Type type2, String imagePath) {
         this.id = id;
         this.pokedexNumber = pokedexNumber;
         this.name = name;
         this.type1 = type1;
         this.type2 = type2;
+        this.imagePath = imagePath;
     }
 
     /**
@@ -42,11 +44,14 @@ public class PokemonShort {
      * @param pokemon
      */
     public PokemonShort(Pokemon pokemon) {
-        id = pokemon.getId();
-        pokedexNumber = pokemon.getPokedexNumber();
-        name = pokemon.getNameEnglish();
-        type1 = pokemon.getType1();
-        type2 = pokemon.getType2();
+        if (pokemon != null) {
+            id = pokemon.getId();
+            pokedexNumber = pokemon.getPokedexNumber();
+            name = pokemon.getNameEnglish();
+            type1 = pokemon.getType1();
+            type2 = pokemon.getType2();
+            imagePath = pokemon.getImagePath();
+        }
     }
 
     // GETTERS && SETTERS
@@ -65,4 +70,7 @@ public class PokemonShort {
 
     public Type getType2() { return type2; }
     public void setType2(Type type2) { this.type2 = type2; }
+
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 }

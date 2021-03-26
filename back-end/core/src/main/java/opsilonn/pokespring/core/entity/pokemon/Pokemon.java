@@ -31,10 +31,12 @@ public class Pokemon {
     @JoinColumn(name="FK_type2_id")
     private Type type2;
 
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name="FK_generation_id")
     private Generation generation;
+
+    @Transient
+    private String imagePath;
 
     @Enumerated(EnumType.STRING)
     private Rarity rarity;
@@ -99,6 +101,7 @@ public class Pokemon {
      * @param type1
      * @param type2
      * @param generation
+     * @param imagePath
      * @param rarity
      * @param species
      * @param hp
@@ -115,7 +118,7 @@ public class Pokemon {
      * @param growthRate
      * @param percentageMale
      */
-    public Pokemon(Long id, Long pokedexNumber, String nameEnglish, String nameGerman, Type type1, Type type2, Generation generation, Rarity rarity, String species, Float height, Float weight, Long hp, Long attack, Long defense, Long specialAttack, Long specialDefense, Long speed, Long catchRate, Long baseFriendship, Long baseExperience, String growthRate, Float percentageMale) {
+    public Pokemon(Long id, Long pokedexNumber, String nameEnglish, String nameGerman, Type type1, Type type2, Generation generation, String imagePath, Rarity rarity, String species, Float height, Float weight, Long hp, Long attack, Long defense, Long specialAttack, Long specialDefense, Long speed, Long catchRate, Long baseFriendship, Long baseExperience, String growthRate, Float percentageMale) {
         this.id = id;
         this.pokedexNumber = pokedexNumber;
         this.nameEnglish = nameEnglish;
@@ -124,6 +127,7 @@ public class Pokemon {
         this.type2 = type2;
         this.generation = generation;
         this.rarity = rarity;
+        this.imagePath = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + pokedexNumber + ".png";
         this.species = species;
         this.height = height;
         this.weight = weight;
@@ -163,6 +167,9 @@ public class Pokemon {
 
     public Generation getGeneration() { return generation; }
     public void setGeneration(Generation generation) { this.generation = generation; }
+
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
     public Rarity getRarity() { return rarity; }
     public void setRarity(Rarity rarity) { this.rarity = rarity; }

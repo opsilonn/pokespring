@@ -2,7 +2,7 @@
   <v-container fluid>
     <!-- Waiting for the logout to end -->
     <CustomProgressBar
-      message="Déconnexion..."
+      message="Login out..."
     />
   </v-container>
 </template>
@@ -13,6 +13,7 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'PageAuthLogout',
+  transition: 'fade',
 
   async mounted () {
     // Logout

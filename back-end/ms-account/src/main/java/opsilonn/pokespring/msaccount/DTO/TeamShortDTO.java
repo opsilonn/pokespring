@@ -1,6 +1,9 @@
 package opsilonn.pokespring.msaccount.DTO;
 
 import opsilonn.pokespring.core.entity.account.Team;
+import opsilonn.pokespring.core.entity.util.PokemonShort;
+
+import java.util.*;
 
 
 /**
@@ -11,6 +14,7 @@ public class TeamShortDTO {
     private Long id;
     private String name;
     private AccountShortDTO account;
+    private List<PokemonInstanceShortDTO> members = new ArrayList<>();
 
 
     // CONSTRUCTORS
@@ -25,11 +29,13 @@ public class TeamShortDTO {
      * @param id
      * @param name
      * @param account
+     * @param members
      */
-    public TeamShortDTO(Long id, String name, AccountShortDTO account) {
+    public TeamShortDTO(Long id, String name, AccountShortDTO account, List<PokemonInstanceShortDTO> members) {
         this.id = id;
         this.name = name;
         this.account = account;
+        this.members = members;
     }
 
     /**
@@ -41,6 +47,8 @@ public class TeamShortDTO {
             id = team.getId();
             name = team.getName();
             account = new AccountShortDTO(team.getAccount());
+            members = new ArrayList<>();
+            team.getMembers().forEach(member -> members.add(new PokemonInstanceShortDTO(member)));
         }
     }
 
@@ -55,4 +63,7 @@ public class TeamShortDTO {
 
     public AccountShortDTO getAccount() { return account; }
     public void setAccount(AccountShortDTO account) { this.account = account; }
+
+    public List<PokemonInstanceShortDTO> getMembers() { return members; }
+    public void setMembers(List<PokemonInstanceShortDTO> members) { this.members = members; }
 }

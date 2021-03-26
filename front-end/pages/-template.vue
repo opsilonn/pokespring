@@ -9,6 +9,7 @@
 
 export default {
   name: 'PageTemplate',
+  transition: 'slide-bottom',
 
   components: {
   },

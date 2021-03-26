@@ -15,6 +15,7 @@
         x-large
         v-bind="attrs"
         v-on="on"
+        :to="itemsUser[0].to"
       >
         <v-badge
           class="ma-2"
@@ -93,24 +94,33 @@ export default {
   name: 'LayoutAppBarButtons',
 
   data: () => ({
-    // List of items to display beneath the user's trigger
-    itemsUser: [
-      {
-        icon: 'mdi-human-handsup',
-        title: 'osef',
-        to: '/osef'
-      },
-      {
-        icon: 'mdi-logout-variant',
-        title: 'Logout',
-        to: '/auth/logout'
-      }
-    ]
   }),
 
   computed: {
     // Imports
-    ...mapGetters('authentification', ['isLogged', 'username'])
+    ...mapGetters('authentification', ['isLogged', 'username']),
+
+    
+    // List of items to display beneath the user's trigger
+    itemsUser() {
+      return [
+        {
+          icon: 'mdi-human-handsup',
+          title: 'my account',
+          to: '/account/' + this.username
+        },
+        {
+          icon: 'mdi-cogs',
+          title: 'settings',
+          to: '/settings'
+        },
+        {
+          icon: 'mdi-logout-variant',
+          title: 'Logout',
+          to: '/auth/logout'
+        }
+      ]
+    }
   }
 }
 </script>

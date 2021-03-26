@@ -64,9 +64,8 @@
               </v-btn>
             </center>
             
-            <v-divider
-              class="ma-6"
-            />
+            <!-- Divider -->
+            <v-divider class="ma-6" />
 
             <!-- Button that redirects to sign up -->
             <p class="text-center">
@@ -94,10 +93,11 @@
 <script>
 // Imports
 import MixinRules from '@/mixins/mixin-rules'
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
-  name: "PageAuthLogin",
+  name: 'PageAuthLogin',
+  transition: 'slide-bottom',
 
   mixins: [MixinRules],
 
@@ -109,7 +109,7 @@ export default {
       // Whether to display some inputs or not
       showPassword: false,
 
-      // Form holder
+      // Form's holder
       form: false,
 
       // Whether the form failed or not

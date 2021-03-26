@@ -32,6 +32,7 @@
               x-large
               v-bind="attrs"
               v-on="on"
+              :to="category.items[0].to"
             >
               {{ category.title }}
             </v-btn>
@@ -122,7 +123,7 @@
 <script>
 // Imports
 import { mapGetters } from 'vuex'
-import LayoutAppBarButtons from '@/components/layout-app-bar-buttons'
+import LayoutAppBarButtons from '@/components/layout/layout-app-bar-buttons'
 import Cookies from 'js-cookie'
 
 export default {
@@ -145,12 +146,17 @@ export default {
           {
             icon: 'mdi-earth',
             title: 'Discover',
-            to: '/user/my-universes'
+            to: '/pokemon/azerty'
+          },
+          {
+            icon: 'mdi-magnify',
+            title: 'Search',
+            to: '/search/pokemon'
           },
           {
             icon: 'mdi-human-handsup',
             title: 'Select random',
-            to: '/user/my-characters'
+            to: '/pokemon/qwerty'
           }
         ]
       },
@@ -160,22 +166,19 @@ export default {
           {
             icon: 'mdi-earth',
             title: 'Discover',
-            to: '/user/my-universes'
+            to: '/account/azerty'
+          },
+          {
+            icon: 'mdi-magnify',
+            title: 'Search',
+            to: '/search/account'
           },
           {
             icon: 'mdi-human-handsup',
             title: 'Select random',
-            to: '/user/my-characters'
+            to: '/account/qwerty'
           }
         ]
-      }
-    ],
-
-    // List of items to display beneath the user's trigger (right)
-    itemsUser: [
-      {
-        icon: 'mdi-human-handsup',
-        title: 'osef'
       }
     ]
   }),

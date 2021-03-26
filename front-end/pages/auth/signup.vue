@@ -91,9 +91,8 @@
               </v-btn>
             </center>
             
-            <v-divider
-              class="ma-6"
-            />
+            <!-- Divider -->
+            <v-divider class="ma-6" />
 
             <!-- Button that redirects to log in -->
             <p class="text-center font-italic">
@@ -112,10 +111,11 @@
 <script>
 // Imports
 import MixinRules from '@/mixins/mixin-rules'
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: "PageAuthSignup",
+  transition: 'slide-bottom',
 
   mixins: [MixinRules],
 
