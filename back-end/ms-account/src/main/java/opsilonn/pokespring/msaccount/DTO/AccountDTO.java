@@ -13,6 +13,7 @@ public class AccountDTO {
     private Long id;
     private String username;
     private String email;
+    private String pathImage;
     private List<TeamShortDTO> teams;
 
 
@@ -28,12 +29,14 @@ public class AccountDTO {
      * @param id
      * @param username
      * @param email
+     * @param pathImage
      * @param teams
      */
-    public AccountDTO(Long id, String username, String email, List<TeamShortDTO> teams) {
+    public AccountDTO(Long id, String username, String email, String pathImage, List<TeamShortDTO> teams) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.pathImage = pathImage;
         this.teams = teams;
     }
 
@@ -46,6 +49,7 @@ public class AccountDTO {
             id = account.getId();
             username = account.getUsername();
             email = account.getEmail();
+            pathImage = account.getPathImage();
 
             teams = new ArrayList<>();
             account.getTeams().forEach(team -> teams.add(new TeamShortDTO(team)));
@@ -63,6 +67,9 @@ public class AccountDTO {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getPathImage() { return pathImage; }
+    public void setPathImage(String pathImage) { this.pathImage = pathImage; }
 
     public List<TeamShortDTO> getTeams() { return teams; }
     public void setTeams(List<TeamShortDTO> teams) { this.teams = teams; }

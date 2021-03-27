@@ -1,11 +1,9 @@
 package opsilonn.pokespring.msaccount.api;
 
 import opsilonn.pokespring.core.entity.account.Account;
-import opsilonn.pokespring.core.entity.account.Team;
 import opsilonn.pokespring.core.entity.pokemon.Pokemon;
 import opsilonn.pokespring.msaccount.DTO.AccountDTO;
 import opsilonn.pokespring.msaccount.repository.AccountRepository;
-import opsilonn.pokespring.msaccount.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

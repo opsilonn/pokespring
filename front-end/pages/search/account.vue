@@ -8,7 +8,7 @@
 
       <!-- Input -->
       <v-row align="center" justify="center">
-        <v-col cols="6">
+        <v-col cols="8" sm="6">
           <!-- Field : Username -->
           <v-text-field
             v-model="username"
@@ -52,6 +52,11 @@
               no-action
             >
               <template v-slot:activator>
+                <!-- Account's image -->
+                <v-list-item-avatar>
+                  <v-img :src="account.pathImage || DEFAULT_IMAGE_PATH.PROFILE" />
+                </v-list-item-avatar>
+
                 <v-list-item-content>
                   <!-- Title : Account's username -->
                   <v-list-item-title>
@@ -86,8 +91,8 @@
 
 <script>
 // Imports
+import MixinConstants from '@/mixins/mixin-constants'
 import MixinRules from '@/mixins/mixin-rules'
-import Constants from '@/constants'
 const lodash = require('lodash')
 import { mapGetters, mapActions } from 'vuex'
 
@@ -95,7 +100,7 @@ export default {
   name: 'PageSearchAccount',
   transition: 'slide-bottom',
 
-  mixins: [MixinRules],
+  mixins: [MixinConstants, MixinRules],
   data: () => ({
     // Form's data
     username: '',
@@ -111,7 +116,7 @@ export default {
 
   computed: {
     // Imports
-    ...mapGetters('accounts', ['getAccounts'])
+    ...mapGetters('accounts', ['getAccounts']),
   },
 
   watch: {
@@ -146,7 +151,7 @@ export default {
       },
 
       // We wait for a specific amount of time before using the method above
-      Constants.TIME_BEFORE_SEARCHING)
+      this.TIME.BEFORE_SEARCHING)
     },
 
     selectedAccount () {

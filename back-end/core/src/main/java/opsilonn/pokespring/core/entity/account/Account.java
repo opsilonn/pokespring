@@ -30,6 +30,9 @@ public class Account {
     @Column()
     private String password;
 
+    @Column()
+    private String pathImage;
+
     @OneToMany(mappedBy="account")
     private List<Team> teams = new ArrayList<>();
 
@@ -48,12 +51,14 @@ public class Account {
      * @param username
      * @param email
      * @param password
+     * @param pathImage
      */
-    public Account(Long id, String username, String email, String password) {
+    public Account(Long id, String username, String email, String password, String pathImage) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.pathImage = pathImage;
         teams = new ArrayList<>();
     }
     /**
@@ -64,11 +69,12 @@ public class Account {
      * @param password
      * @param teams
      */
-    public Account(Long id, String username, String email, String password, List<Team> teams) {
+    public Account(Long id, String username, String email, String password, String pathImage, List<Team> teams) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.pathImage = pathImage;
         this.teams = teams;
     }
 
@@ -86,6 +92,9 @@ public class Account {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getPathImage() { return pathImage; }
+    public void setPathImage(String pathImage) { this.pathImage = pathImage; }
 
     public List<Team> getTeams() { return teams; }
     public void setTeams(List<Team> teams) { this.teams = teams; }
